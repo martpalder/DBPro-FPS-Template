@@ -1,0 +1,64 @@
+Rem Project: FPS-Template
+Rem Created: Saturday, January 18, 2025
+
+Rem ***** Main Source File *****
+Rem CONSTANTS
+GLOBAL PITCH_MIN# = -85.0
+GLOBAL PITCH_MAX# = 85.0
+
+Rem VARIABLES
+Rem Player
+GLOBAL X# = 0.0
+GLOBAL Y# = 0.0
+GLOBAL Z# = -150.0
+GLOBAL PITCH# = 0.0
+GLOBAL YAW# = 0.0
+
+Rem MAIN CODE
+INIT()
+GAMELOOP()
+
+Rem FUNCTIONS
+Rem Initialization
+FUNCTION INIT()
+  MAKE OBJECT CUBE 1,100
+ENDFUNCTION
+
+Rem Player Movement
+FUNCTION MOVEMENT()
+  Rem Change the Postion Values
+  IF UPKEY() = 1 THEN Z# = Z# +1
+  IF DOWNKEY() = 1 THEN Z# = Z# -1
+  
+  Rem Apply the Position
+  POSITION CAMERA 0, X#, Y#, Z#
+ENDFUNCTION
+
+Rem Mouse Look
+FUNCTION MLOOK()
+  Rem Change Rotation Angles
+  PITCH# = PITCH# + MOUSEMOVEY()
+  YAW# = YAW# + MOUSEMOVEX()
+  
+  Rem Clamp the Pitch
+  IF PITCH# < PITCH_MIN# THEN PITCH# = PITCH_MIN#
+  IF PITCH# > PITCH_MAX# THEN PITCH# = PITCH_MAX#
+  
+  Rem Apply the Rotation
+  ROTATE CAMERA PITCH#, YAW#, 0
+ENDFUNCTION
+
+Rem Game Loop
+FUNCTION GAMELOOP()
+  DO
+    Rem Translate Objects
+    YROTATE OBJECT 1,OBJECT ANGLE Y(1)+0.01
+    
+    Rem Controls
+    MOVEMENT()
+    MLOOK()
+    
+    Rem Print
+    PRINT PITCH#
+  LOOP
+ENDFUNCTION
