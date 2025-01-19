@@ -5,7 +5,13 @@ project name=FPS-Template
 
 ; **** source file information ****
 main=FPS-Template.dba
-LineMain=85
+LineMain=52
+include1=Move.dba
+LineInclude1=22
+include2=Output.dba
+LineInclude2=7
+include3=Look.dba
+LineInclude3=14
 
 ; **** Executable Information  ***
 ; build types: exe, media, installer, alone

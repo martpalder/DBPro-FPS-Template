@@ -1,0 +1,22 @@
+Rem MOVE FUNCTIONS
+FUNCTION MOVEMENT()
+  Rem Get the Position
+  X# = X VECTOR3(2)
+  Z# = Z VECTOR3(2)
+  
+  Rem Get the Move Input
+  V = UPKEY() - DOWNKEY()
+  H = RIGHTKEY() - LEFTKEY()
+  
+  Rem Calculate Directions
+  SET VECTOR3 3, SIN(YAW#), 0, COS(YAW#)
+  CROSS PRODUCT VECTOR3 4, 1, 3
+  
+  Rem Move the Player/Camera
+  X# = X# + X VECTOR3(3) * V + X VECTOR3(4) * H
+  Z# = Z# + Z VECTOR3(3) * V + Z VECTOR3(4) * H
+  SET VECTOR3 2, X#, 0, Z#
+  
+  Rem Apply the Camera Position
+  POSITION CAMERA 0, 2
+ENDFUNCTION

@@ -1,0 +1,14 @@
+Rem ***** Included Source File *****
+Rem MOUSE LOOK FUNCTION
+FUNCTION MLOOK()
+  Rem Change Rotation Angles
+  PITCH# = PITCH# + MOUSEMOVEY()
+  YAW# = YAW# + MOUSEMOVEX()
+  
+  Rem Clamp the Pitch
+  IF (PITCH# < PITCH_MIN#) THEN PITCH# = PITCH_MIN#
+  IF (PITCH# > PITCH_MAX#) THEN PITCH# = PITCH_MAX#
+  
+  Rem Apply the Rotation
+  ROTATE CAMERA PITCH#, YAW#, 0
+ENDFUNCTION

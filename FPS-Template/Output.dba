@@ -1,0 +1,8 @@
+Rem ***** Included Source File *****
+Rem PRINT FUNCTIONS
+FUNCTION PRINT_VEC3(I)
+  PRINT "X: ", X VECTOR3(I)
+  PRINT "Y: ", Y VECTOR3(I)
+  PRINT "Z: ", Z VECTOR3(I)
+ENDFUNCTION
+
