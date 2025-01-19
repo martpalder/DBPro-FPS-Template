@@ -5,13 +5,13 @@ project name=FPS-Template
 
 ; **** source file information ****
 main=FPS-Template.dba
-LineMain=61
+LineMain=71
 include1=Move.dba
 LineInclude1=24
 include2=Output.dba
 LineInclude2=3
 include3=Look.dba
-LineInclude3=1
+LineInclude3=14
 include4=HUD.dba
 LineInclude4=6
 

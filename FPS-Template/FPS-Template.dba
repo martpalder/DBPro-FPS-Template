@@ -2,10 +2,10 @@ Rem Project: FPS-Template
 Rem Created: Saturday, January 18, 2025
 
 Rem ***** Main Source File *****
+Rem VARIABLES
 Rem Up Vector
 UP = MAKE VECTOR3(1)
 SET VECTOR3 1, 0.0, 1.0, 0.0
-Rem VARIABLES
 Rem Player/Camera Position
 POS = MAKE VECTOR3(2)
 SET VECTOR3 2, 0.0, 0.0, -150.0
@@ -39,6 +39,14 @@ FUNCTION INIT()
   MAKE OBJECT BOX 1, 2000, 200, 2000
   POSITION OBJECT 1, 0, -200, 0
   COLOR OBJECT 1, RGB(0, 127, 0)
+  
+  MAKE OBJECT CUBE 2, 100
+  POSITION OBJECT 2, 0, 0, 0
+ENDFUNCTION
+
+Rem Update Function
+FUNCTION UPDATE()
+  YROTATE OBJECT 2, OBJECT ANGLE Y(2) + 1.0
 ENDFUNCTION
 
 Rem Game Loop
@@ -48,7 +56,9 @@ FUNCTION GAMELOOP()
     MOVEMENT()
     MLOOK()
     
-    Rem Draw HUD
+    UPDATE()
+    
+    Rem Draw the HUD
     DRAW_HUD()
     
     Rem Print
