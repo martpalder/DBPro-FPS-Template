@@ -1,0 +1,6 @@
+Rem ***** Included Source File *****
+FUNCTION DRAW_HUD()
+  Rem Draw the Crosshair
+  CIRCLE SCREEN WIDTH() / 2, SCREEN HEIGHT() / 2 + 40, 8
+  DOT SCREEN WIDTH() / 2, SCREEN HEIGHT() / 2 + 40
+ENDFUNCTION

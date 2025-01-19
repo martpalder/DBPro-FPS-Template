@@ -1,3 +1,4 @@
+Rem CONSTANTS
 Rem MOVE FUNCTIONS
 FUNCTION MOVEMENT()
   Rem Get the Position
@@ -13,8 +14,9 @@ FUNCTION MOVEMENT()
   CROSS PRODUCT VECTOR3 4, 1, 3
   
   Rem Move the Player/Camera
-  X# = X# + X VECTOR3(3) * V + X VECTOR3(4) * H
-  Z# = Z# + Z VECTOR3(3) * V + Z VECTOR3(4) * H
+  LOCAL SPEED = 20
+  X# = X# + X VECTOR3(3) * V * SPEED + X VECTOR3(4) * H * SPEED
+  Z# = Z# + Z VECTOR3(3) * V * SPEED + Z VECTOR3(4) * H * SPEED
   SET VECTOR3 2, X#, 0, Z#
   
   Rem Apply the Camera Position

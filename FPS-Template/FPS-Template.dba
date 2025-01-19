@@ -2,24 +2,19 @@ Rem Project: FPS-Template
 Rem Created: Saturday, January 18, 2025
 
 Rem ***** Main Source File *****
-Rem CONSTANTS
-Rem Pitch Limits
-GLOBAL PITCH_MIN# = -85.0
-GLOBAL PITCH_MAX# = 85.0
 Rem Up Vector
 UP = MAKE VECTOR3(1)
 SET VECTOR3 1, 0.0, 1.0, 0.0
-
 Rem VARIABLES
-Rem Player Position
+Rem Player/Camera Position
 POS = MAKE VECTOR3(2)
 SET VECTOR3 2, 0.0, 0.0, -150.0
-Rem Player Directions
-FDIR = MAKE VECTOR3(3)
-SET VECTOR3 3, 0.0, 0.0, 0.0
-RDIR = MAKE VECTOR3(4)
-SET VECTOR3 4, 0.0, 0.0, 0.0
-Rem Player Rotation
+Rem Player/Camera Directions
+CAM_F = MAKE VECTOR3(3)
+SET VECTOR3 3, 0.0, 0.0, 1.0
+CAM_R = MAKE VECTOR3(4)
+SET VECTOR3 4, 1.0, 0.0, 0.0
+Rem Player/Camera Rotation
 GLOBAL PITCH# = 0.0
 GLOBAL YAW# = 0.0
 
@@ -33,6 +28,13 @@ RETURN
 Rem GAME CODE
 Rem Initialization
 FUNCTION INIT()
+  Rem Set the FPS to 60
+  SYNC ON
+  SYNC RATE(60)
+  
+  Rem Hide the Mouse
+  HIDE MOUSE
+  
   Rem Create a Platform
   MAKE OBJECT BOX 1, 2000, 200, 2000
   POSITION OBJECT 1, 0, -200, 0
@@ -46,7 +48,14 @@ FUNCTION GAMELOOP()
     MOVEMENT()
     MLOOK()
     
+    Rem Draw HUD
+    DRAW_HUD()
+    
     Rem Print
     PRINT_VEC3(2)
+    PRINT_FPS()
+    
+    Rem Refresh the Screen
+    SYNC()
   LOOP
 ENDFUNCTION
