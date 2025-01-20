@@ -1,0 +1,35 @@
+Rem ***** Included Source File *****
+Rem DRAW HUD FUNCTIONS
+FUNCTION DRAW_TEXTS()
+  Rem Get the Center Position
+  W = SCREEN WIDTH()
+  H = SCREEN HEIGHT()
+  
+  Rem Draw the Health Text
+  INK RGB(255, 0, 0), RGB(0, 0, 0)
+  TEXT 20, (H - 40), STR$(HP)
+  
+  Rem Draw the Ammo Text
+  INK RGB(255, 255, 0), RGB(0, 0, 0)
+  TEXT W - 60, H - 40, STR$(AMMO)
+ENDFUNCTION
+
+FUNCTION DRAW_CROSSHAIR()
+  Rem Get the Center Position
+  CENTER_X = SCREEN WIDTH() / 2
+  CENTER_Y = SCREEN HEIGHT() / 2
+  
+  // Draw the Crosshair
+  INK RGB(255, 255, 255), RGB(0, 0, 0)
+  CIRCLE CENTER_X, CENTER_Y, 8
+  DOT CENTER_X, CENTER_Y
+ENDFUNCTION
+
+
+FUNCTION DRAW_HUD()
+  Rem Draw the Texts
+  DRAW_TEXTS()
+  
+  Rem Draw the Crosshair
+  DRAW_CROSSHAIR()
+ENDFUNCTION
