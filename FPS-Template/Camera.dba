@@ -1,0 +1,7 @@
+Rem ***** Included Source File *****
+FUNCTION UPDATE_CAM()
+  Rem Get the Camera Position
+  CAM_X# = CAMERA POSITION X(0)
+  CAM_Y# = CAMERA POSITION Y(0)
+  CAM_Z# = CAMERA POSITION Z(0)
+ENDFUNCTION

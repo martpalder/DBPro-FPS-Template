@@ -13,7 +13,7 @@ FUNCTION MOVEMENT()
   SET VECTOR3 3, SIN(YAW#), 0, COS(YAW#)
   CROSS PRODUCT VECTOR3 4, 1, 3
   
-  Rem Move the Player/Camera
+  Rem Move the Camera
   LOCAL SPEED = 20
   X# = X# + X VECTOR3(3) * V * SPEED + X VECTOR3(4) * H * SPEED
   Z# = Z# + Z VECTOR3(3) * V * SPEED + Z VECTOR3(4) * H * SPEED

@@ -1,0 +1,16 @@
+Rem ***** Included Source File *****
+FUNCTION COL_CAM_OBJECT(I)
+  Rem Get the Object Position
+  OBJ_X# = OBJECT POSITION X(I)
+  OBJ_Y# = OBJECT POSITION Y(I)
+  OBJ_Z# = OBJECT POSITION Z(I)
+  
+  Rem Get the Object Radius
+  R# = OBJECT COLLISION RADIUS(I)
+  
+  Rem Detect Collision
+  CHK_X = (CAM_X# < OBJ_X# + R#) AND (CAM_X# > OBJ_X# - R#)
+  CHK_Y = (CAM_Y# < OBJ_Y# + R#) AND (CAM_Y# > OBJ_Y# - R#)
+  CHK_Z = (CAM_Z# < OBJ_Z# + R#) AND (CAM_Z# > OBJ_Z# - R#)
+  COL = (CHK_X AND CHK_Y AND CHK_Z)
+ENDFUNCTION COL
