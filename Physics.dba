@@ -8,7 +8,11 @@ FUNCTION APPLY_GRAVITY()
   CAM_Y# = CAM_Y# + GRAVITY#
   Rem If collided: Move Backwards
   FOR I = OBJ_MIN TO OBJ_MAX
-    IF (COL_CAM(I) = 1) THEN CAM_Y# = CAM_Y# - GRAVITY#; BREAK
+    IF (COL_CAM(I) = 1)
+      CAM_Y# = CAM_Y# - GRAVITY#
+      GROUNDED = 1;
+      BREAK
+    ENDIF
   NEXT I
   
   Rem Check Respawn

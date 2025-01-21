@@ -5,17 +5,17 @@ project name=FPS-Template
 
 ; **** source file information ****
 main=FPS-Template.dba
-LineMain=79
+LineMain=53
 include1=HUD.dba
 LineInclude1=35
 include2=Collision.dba
-LineInclude2=19
+LineInclude2=22
 include3=Physics.dba
-LineInclude3=2
+LineInclude3=20
 include4=Camera.dba
-LineInclude4=8
+LineInclude4=35
 include5=Update.dba
-LineInclude5=20
+LineInclude5=36
 include6=Output.dba
 LineInclude6=12
 include7=Render.dba

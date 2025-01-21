@@ -11,9 +11,12 @@ FUNCTION COL_CAM(I)
   R_Y# = OBJECT SIZE Y(I) / 2
   R_Z# = OBJECT SIZE Z(I) / 2
   
-  Rem Detect Collision
-  CHK_X = (CAM_X# < OBJ_X# + R_X#) AND (CAM_X# > OBJ_X# - R_X#)
-  CHK_Z = (CAM_Z# < OBJ_Z# + R_Z#) AND (CAM_Z# > OBJ_Z# - R_Z#)
-  CHK_Y = (CAM_Y# < OBJ_Y# + R_Y# + 100.0) AND (CAM_Y# > OBJ_Y# - R_Y#)
-  COL = CHK_X AND CHK_Y AND CHK_Z
+  COL = 0
+  IF (1)
+    Rem Detect Collision
+    CHK_X = (CAM_X# < OBJ_X# + R_X#) AND (CAM_X# > OBJ_X# - R_X#)
+    CHK_Z = (CAM_Z# < OBJ_Z# + R_Z#) AND (CAM_Z# > OBJ_Z# - R_Z#)
+    CHK_Y = (CAM_Y# < OBJ_Y# + R_Y# + 100.0) AND (CAM_Y# > OBJ_Y# - R_Y#)
+    COL = CHK_X AND CHK_Y AND CHK_Z
+  ENDIF
 ENDFUNCTION COL

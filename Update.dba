@@ -4,17 +4,33 @@ FUNCTION UPDATE()
   Rem Apply the Gravity
   APPLY_GRAVITY()
   
-  Rem Get the Input
+  Rem Get the Keyboard Input
+  Rem Arrows
   V = UPKEY() - DOWNKEY()
   H = RIGHTKEY() - LEFTKEY()
+  Rem WASD
+  IF (GET KEY STATE(0x57) < 0) THEN V = 1
+  IF (GET KEY STATE(0x53) < 0) THEN V = -1
+  IF (GET KEY STATE(0x44) < 0) THEN H = 1
+  IF (GET KEY STATE(0x41) < 0) THEN H = -1
+  
+  Rem Get the Mouse Input
   MOVE_X = MOUSEMOVEX()
   MOVE_Y = MOUSEMOVEY()
   
   Rem If there's Move Input: Move the Camera
   IF (H <> 0 OR V <> 0) THEN MOVE_CAM(H, V)
+  Rem Space: Jump
+  IF (SPACEKEY() = 1) THEN JUMP()
   Rem If there's Mouse Movement: Mouse Look
   IF (MOVE_X <> 0 OR MOVE_Y <> 0) THEN MLOOK(MOVE_X, MOVE_Y)
   
   Rem Update the Camera
   UPDATE_CAM()
+  
+  Rem If Left-Clicked: Raycast an Object
+  IF (MOUSECLICK())
+    OBJ = PICK OBJECT(320, 240, OBJ_MIN, OBJ_MAX)
+    TEXT 20, 40, "Object: " + STR$(OBJ)
+  ENDIF
 ENDFUNCTION

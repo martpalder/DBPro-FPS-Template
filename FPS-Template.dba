@@ -2,7 +2,7 @@ Rem Project: FPS-Template
 Rem Created: Saturday, January 18, 2025
 
 Rem ***** Main Source File *****
-Rem VARIABLES
+Rem VECTORS
 Rem Up Vector
 UP = MAKE VECTOR3(1)
 SET VECTOR3 1, 0.0, 1.0, 0.0
@@ -11,6 +11,11 @@ CAM_F = MAKE VECTOR3(2)
 SET VECTOR3 2, 0.0, 0.0, 1.0
 CAM_R = MAKE VECTOR3(3)
 SET VECTOR3 3, 1.0, 0.0, 0.0
+
+REM GLOBALS
+Rem Object Min and Max
+GLOBAL OBJ_MIN = 1
+GLOBAL OBJ_MAX = 1
 Rem Camera Position
 GLOBAL CAM_X# = 0.0
 GLOBAL CAM_Y# = 200.0
@@ -18,12 +23,11 @@ GLOBAL CAM_Z# = -150.0
 Rem Camera Rotation
 GLOBAL PITCH# = 0.0
 GLOBAL YAW# = 0.0
+Rem Grounded Check
+GLOBAL GROUNDED = 0
 Rem Player Stats
 GLOBAL HP = 100
 GLOBAL AMMO = 0
-Rem Object Min and Max
-GLOBAL OBJ_MIN = 1
-GLOBAL OBJ_MAX = 1
 
 
 Rem MAIN CODE
