@@ -1,37 +1,38 @@
-Rem CONSTANTS
+Rem ***** Included Source File *****
 Rem MOVE FUNCTIONS
-FUNCTION MOVEMENT()
-  Rem Get the Camera Position
-  CAM_X# = CAMERA POSITION X(0)
-  CAM_Y# = CAMERA POSITION Y(0)
-  CAM_Z# = CAMERA POSITION Z(0)
-  
+FUNCTION MOVEMENT(OBJ_MIN, OBJ_MAX)
   Rem Get the Move Input
   V = UPKEY() - DOWNKEY()
   H = RIGHTKEY() - LEFTKEY()
   
-  Rem Calculate Camera Forward and Right
-  SET VECTOR3 2, SIN(YAW#), 0, COS(YAW#)
-  CROSS PRODUCT VECTOR3 3, 1, 2
-  
-  Rem Calculate Move Direction
-  DIR_X# = X VECTOR3(2) * V + X VECTOR3(3) * H
-  DIR_Z# = Z VECTOR3(2) * V + Z VECTOR3(3) * H
-  
-  Rem Set the Camera Speed
-  LOCAL SPEED# = 10.0
-  
-  Rem Move the Camera
-  CAM_X# = CAM_X# + DIR_X# * SPEED#
-  CAM_Z# = CAM_Z# + DIR_Z# * SPEED#
-  
-  Rem If collided with an Object
-  IF (COL_CAM_OBJECT(CAM_X#, CAM_Y#, CAM_Z#, 2) = 1)
-    Rem Move Backwards
-    CAM_X# = CAM_X# - DIR_X# * SPEED#
-    CAM_Z# = CAM_Z# - DIR_Z# * SPEED#
+  Rem If there's Move Input
+  IF (H <> 0 OR V <> 0)
+    Rem Calculate Camera Forward and Right
+    SET VECTOR3 2, SIN(YAW#), 0, COS(YAW#)
+    CROSS PRODUCT VECTOR3 3, 1, 2
+    
+    Rem Calculate Move Direction
+    DIR_X# = X VECTOR3(2) * V + X VECTOR3(3) * H
+    DIR_Z# = Z VECTOR3(2) * V + Z VECTOR3(3) * H
+    
+    Rem Set the Camera Speed
+    LOCAL SPEED# = 10.0
+    
+    Rem Move the Camera along X-Axis
+    CAM_X# = CAM_X# + DIR_X# * SPEED#
+    FOR I = OBJ_MIN TO OBJ_MAX
+      Rem If collided with an Object: Move Backwards
+      IF (COL_CAM(I) = 1) THEN CAM_X# = CAM_X# - DIR_X# * SPEED#
+    NEXT
+    
+    Rem Move the Camera along Z-Axis
+    CAM_Z# = CAM_Z# + DIR_Z# * SPEED#
+    FOR I = OBJ_MIN TO OBJ_MAX
+      Rem If collided with an Object: Move Backwards
+      IF (COL_CAM(I) = 1) THEN CAM_Z# = CAM_Z# - DIR_Z# * SPEED#
+    NEXT
+    
+    Rem Apply the Position
+    POSITION CAMERA 0, CAM_X#, CAM_Y#, CAM_Z#
   ENDIF
-  
-  Rem Apply the Position
-  POSITION CAMERA 0, CAM_X#, 0, CAM_Z#
 ENDFUNCTION
