@@ -5,19 +5,21 @@ project name=FPS-Template
 
 ; **** source file information ****
 main=FPS-Template.dba
-LineMain=68
-include1=Move.dba
-LineInclude1=38
-include2=Output.dba
-LineInclude2=0
-include3=Look.dba
-LineInclude3=14
-include4=HUD.dba
-LineInclude4=35
-include5=Collision.dba
-LineInclude5=2
-include6=Physics.dba
-LineInclude6=17
+LineMain=79
+include1=HUD.dba
+LineInclude1=35
+include2=Collision.dba
+LineInclude2=19
+include3=Physics.dba
+LineInclude3=2
+include4=Camera.dba
+LineInclude4=8
+include5=Update.dba
+LineInclude5=20
+include6=Output.dba
+LineInclude6=12
+include7=Render.dba
+LineInclude7=10
 
 ; **** Executable Information  ***
 ; build types: exe, media, installer, alone

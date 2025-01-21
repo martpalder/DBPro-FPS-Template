@@ -1,6 +1,6 @@
 Rem ***** Included Source File *****
 Rem GRAVITY FUNCTION
-FUNCTION APPLY_GRAVITY(OBJ_MIN, OBJ_MAX)
+FUNCTION APPLY_GRAVITY()
   Rem Set the Gravity
   LOCAL GRAVITY# = -9.8
   
@@ -8,10 +8,9 @@ FUNCTION APPLY_GRAVITY(OBJ_MIN, OBJ_MAX)
   CAM_Y# = CAM_Y# + GRAVITY#
   Rem If collided: Move Backwards
   FOR I = OBJ_MIN TO OBJ_MAX
-    IF (COL_CAM(I) = 1) THEN CAM_Y# = CAM_Y# - GRAVITY#
-    IF (CAM_Y# < -500.0) THEN CAM_X# = 0.0; CAM_Y# = 0.0; CAM_Z# = -150.0
+    IF (COL_CAM(I) = 1) THEN CAM_Y# = CAM_Y# - GRAVITY#; BREAK
   NEXT I
   
-  Rem Apply the Position
-  POSITION CAMERA 0, CAM_X#, CAM_Y#, CAM_Z#
+  Rem Check Respawn
+  IF (CAM_Y# < -500.0) THEN CAM_X# = 0.0; CAM_Y# = 0.0; CAM_Z# = -150.0
 ENDFUNCTION

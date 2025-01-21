@@ -1,0 +1,20 @@
+Rem ***** Included Source File *****
+Rem UPDATE FUNCTION
+FUNCTION UPDATE()
+  Rem Apply the Gravity
+  APPLY_GRAVITY()
+  
+  Rem Get the Input
+  V = UPKEY() - DOWNKEY()
+  H = RIGHTKEY() - LEFTKEY()
+  MOVE_X = MOUSEMOVEX()
+  MOVE_Y = MOUSEMOVEY()
+  
+  Rem If there's Move Input: Move the Camera
+  IF (H <> 0 OR V <> 0) THEN MOVE_CAM(H, V)
+  Rem If there's Mouse Movement: Mouse Look
+  IF (MOVE_X <> 0 OR MOVE_Y <> 0) THEN MLOOK(MOVE_X, MOVE_Y)
+  
+  Rem Update the Camera
+  UPDATE_CAM()
+ENDFUNCTION

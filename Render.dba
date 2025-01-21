@@ -1,0 +1,10 @@
+Rem ***** Included Source File *****
+Rem RENDER FUNCTION
+FUNCTION RENDER()
+    Rem Draw the HUD and FPS
+    DRAW_HUD()
+    DRAW_FPS()
+    
+    Rem Refresh the Screen
+    SYNC()
+ENDFUNCTION

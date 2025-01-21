@@ -1,0 +1,47 @@
+Rem ***** Included Source File *****
+Rem CAMERA MOVE FUNCTION
+FUNCTION MOVE_CAM(H, V)
+  Rem Calculate Camera Forward and Right
+  SET VECTOR3 2, SIN(YAW#), 0, COS(YAW#)
+  CROSS PRODUCT VECTOR3 3, 1, 2
+  
+  Rem Calculate Move Direction
+  DIR_X# = X VECTOR3(2) * V + X VECTOR3(3) * H
+  DIR_Z# = Z VECTOR3(2) * V + Z VECTOR3(3) * H
+  
+  Rem Set the Camera Speed
+  LOCAL SPEED# = 10.0
+  
+  Rem Move the Camera along X-Axis
+  CAM_X# = CAM_X# + DIR_X# * SPEED#
+  FOR I = OBJ_MIN TO OBJ_MAX
+    Rem If collided with an Object: Move Backwards
+    IF (COL_CAM(I) = 1) THEN CAM_X# = CAM_X# - DIR_X# * SPEED#; BREAK
+  NEXT
+  
+  Rem Move the Camera along Z-Axis
+  CAM_Z# = CAM_Z# + DIR_Z# * SPEED#
+  FOR I = OBJ_MIN TO OBJ_MAX
+    Rem If collided with an Object: Move Backwards
+    IF (COL_CAM(I) = 1) THEN CAM_Z# = CAM_Z# - DIR_Z# * SPEED#; BREAK
+  NEXT
+ENDFUNCTION
+
+Rem MOUSE LOOK FUNCTION
+FUNCTION MLOOK(MOVE_X, MOVE_Y)
+  Rem Change Rotation Angles
+  YAW# = YAW# + MOVE_X / 2
+  PITCH# = PITCH# + MOVE_Y / 2
+  
+  Rem Clamp the Pitch
+  IF (PITCH# < -85.0) THEN PITCH# = -85.0
+  IF (PITCH# > 85.0) THEN PITCH# = 85.0
+ENDFUNCTION
+
+Rem CAMERA UPDATE FUNCTION
+FUNCTION UPDATE_CAM()
+  Rem Apply the Position
+  POSITION CAMERA 0, CAM_X#, CAM_Y#, CAM_Z#
+  Rem Apply the Rotation
+  ROTATE CAMERA 0, PITCH#, YAW#, 0
+ENDFUNCTION
